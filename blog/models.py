@@ -2,6 +2,11 @@ from django.db import models
 from django.core.urlresolvers import reverse
 # Create your models here.
 
+#class PostQuerySet(models.QuerySet):
+	#def published(self):
+		#return self.filter(publish=True)
+
+#objects = PostQuerySet.as_manager()
 
 
 class Post(models.Model):
@@ -13,6 +18,7 @@ class Post(models.Model):
 	created = models.DateTimeField(auto_now_add=True)
 	modified = models.DateTimeField(auto_now=True)
 
+	
 
 	def __str__(self):
 		return self.title
