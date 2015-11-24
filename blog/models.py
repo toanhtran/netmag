@@ -1,21 +1,23 @@
 from django.db import models
 from django.core.urlresolvers import reverse
-
 # Create your models here.
+
+
 
 class Post(models.Model):
 	title = models.CharField(max_length=255)
 	slug = models.SlugField(unique=True, max_length=255)
 	description = models.CharField(max_length=255)
-	content= models.TextField()
+	body= models.TextField()
 	published = models.BooleanField(default=True)
-	create = models.DateTimeField(auto_now_add=True)
+	created = models.DateTimeField(auto_now_add=True)
+	modified = models.DateTimeField(auto_now=True)
 
-class Meta:
-	ordering = ['-created']
 
-	def__unicode__(self):
-	return u'%s'%self.title
+	def __str__(self):
+		return self.title
 
-	def get_absolute_url(self):
-		return reverse('blog.views.post', args=[self.slug])
+	class Meta:
+		verbose_name = "Blog Entry"
+		verbose_name_plural = "Blog Entries"
+		ordering = ["-created"]
